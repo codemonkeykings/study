@@ -13,7 +13,8 @@
 		<module>websocket</module>
 		<module>rabbitmq</module>
 	    <module>fileupload</module>
-  	</modules>
+	    <module>webscoket</module>
+	</modules>
 
 	<properties>
 		<slf4j.version>1.7.13</slf4j.version>
