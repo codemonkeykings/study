@@ -46,7 +46,7 @@ public class PartServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long start = System.currentTimeMillis();
 		req.setCharacterEncoding("UTF-8");
-		Part part = req.getPart("partfile");
+		Part part = req.getPart("file1");
 		String header = part.getHeader("content-disposition");
 		String clientPath = header.substring(header.indexOf("filename=\"") + 10, header.lastIndexOf("\""));
 		String fileName = clientPath.substring(clientPath.lastIndexOf("\\") + 1);
