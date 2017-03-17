@@ -41,5 +41,7 @@
 	</bean>
 	
 	<bean class="spring.scope.PrototypeWithScopeBean" scope="prototype"></bean>
+	
+	<import resource="classpath:spring-quartz.xml"/>
 
 </beans>
