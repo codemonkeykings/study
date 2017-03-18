@@ -40,7 +40,7 @@
 		<constructor-arg ref="sgtPeppers_c"/>
 	</bean>
 	
-	<bean class="spring.scope.PrototypeWithScopeBean" scope="prototype"></bean>
+	<bean class="spring.scope.PrototypeWithScopeBean" scope="prototype"/>
 	
 	<import resource="classpath:spring-quartz.xml"/>
 

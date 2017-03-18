@@ -66,11 +66,22 @@
 		</dependency>
 		<!-- test end -->
 
-		<dependency>
+ 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
-			<version>2.2.1</version>
+			<version>2.2.3</version>
 		</dependency>
+		<!--<dependency>
+			<groupId>quartz</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.5.2</version>
+		</dependency> -->
+
+		<!-- <dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.5</version>
+		</dependency> -->
 
 	</dependencies>
 

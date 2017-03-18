@@ -13,6 +13,6 @@ public class XmlTimer {
     Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());
     
     public void execute() {
-        log.info("执行");
+        log.info("XML配置方式的定时任务");
     }
 }

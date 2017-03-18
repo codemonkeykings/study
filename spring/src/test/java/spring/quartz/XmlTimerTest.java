@@ -1,13 +1,16 @@
 package spring.quartz;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
-@RunWith(SpringJUnit4ClassRunner.class)
-public class XmlTimerTest {
+import spring.SpringTxCase;
+
+/**
+ * XML配置方式的定时任务测试类.
+ * 
+ * @author Zhang.Ge
+ * @version v1.0 2017年3月17日  下午9:02:30
+ */
+public class XmlTimerTest extends SpringTxCase{
 
 	@Test
 	public void test() {
