@@ -9,7 +9,6 @@ import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import spring.quartz.schedule.entity.ScheduleTask;
@@ -22,7 +21,7 @@ import spring.quartz.schedule.service.IScheduleService;
  * @author Zhang.Ge
  * @version v1.0 2017年3月17日  下午9:32:39
  */
-@Controller
+@Service
 public class DynamicSchedule implements IScheduleService {
     
     @Autowired

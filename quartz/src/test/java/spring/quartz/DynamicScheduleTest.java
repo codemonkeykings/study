@@ -2,6 +2,7 @@ package spring.quartz;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import spring.SpringTxCase;
 import spring.quartz.schedule.service.IScheduleService;
@@ -17,6 +18,9 @@ public class DynamicScheduleTest extends SpringTxCase {
     
     @Autowired
     private IScheduleService dynamicSchedule;
+    
+    @Autowired
+    SchedulerFactoryBean schedulerFactoryBean;
 
     @Test
     public void test() {

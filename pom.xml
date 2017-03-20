@@ -6,15 +6,16 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<modules>
-		<module>spring</module>
-		<module>docs</module>
-		<module>java</module>
-		<module>websocket</module>
-		<module>rabbitmq</module>
-	    <module>fileupload</module>
-	    <module>webscoket</module>
-	</modules>
+  <modules>
+	<module>spring</module>
+	<module>docs</module>
+	<module>java</module>
+	<module>websocket</module>
+	<module>rabbitmq</module>
+    <module>fileupload</module>
+    <module>webscoket</module>
+    <module>quartz</module>
+  </modules>
 
 	<properties>
 		<slf4j.version>1.7.13</slf4j.version>
