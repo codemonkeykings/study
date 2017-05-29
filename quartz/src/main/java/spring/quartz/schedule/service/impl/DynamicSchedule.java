@@ -1,5 +1,8 @@
 package spring.quartz.schedule.service.impl;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +11,7 @@ import org.quartz.Scheduler;
 import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
@@ -40,14 +44,14 @@ public class DynamicSchedule implements IScheduleService {
 
     @Override
     public List<ScheduleTask> getAllTask() {
-        // TODO Auto-generated method stub
-        return null;
+        List<ScheduleTask> allTaskList = new ArrayList<ScheduleTask>();
+        allTaskList.addAll(allTask.values());
+        return allTaskList;
     }
 
     @Override
     public ScheduleTask getTaskById(String taskId) {
-        // TODO Auto-generated method stub
-        return null;
+        return allTask.get(taskId);
     }
     
     /**
@@ -60,12 +64,14 @@ public class DynamicSchedule implements IScheduleService {
      * @return  新建的任务
      * @throws Exception  异常
      */
-    private ScheduleTask createTask(String taskName, String taskClassName, 
-                                    String triggerName, String cron) throws Exception {
+    private ScheduleTask createTask(Method m) throws Exception {
         ScheduleTask task = new ScheduleTask("" + System.currentTimeMillis());
-        task.setName(taskName);
+        String taskClassName = m.getDeclaringClass().getName();
         task.setGroup(taskClassName);
-        task.setTrigger(taskClassName + "." + triggerName);
+        task.setTrigger(taskClassName + "." + m.getName());
+        Annotation annotation = m.getAnnotation(Scheduled.class);
+        Method getCron = annotation.getClass().getMethod("corn");
+        String cron = getCron.invoke(annotation).toString();
         task.setCron(cron);
         return task;
     }
@@ -83,6 +89,13 @@ public class DynamicSchedule implements IScheduleService {
         trigger.setGroup(task.getTrigger());
         trigger.setCronExpression(task.getCron());
         
+        Class<?> clazz = Class.forName(task.getGroup());
+        Method method = clazz.getMethod(task.getTrigger().substring(task.getTrigger().lastIndexOf(".") + 1));
+        method.getAnnotation(Scheduled.class);
+        trigger.getJobDataMap().put(ProxyJob.DATA_TARGET_KEY, clazz.newInstance());
+        trigger.getJobDataMap().put(ProxyJob.DATA_TRIGGER_KEY, method);
+        trigger.getJobDataMap().put(ProxyJob.DATA_TRIGGER_PARAM_KEY, new Object[]{});
+        trigger.getJobDataMap().put(ProxyJob.DATA_TASK_KEY, task);
         scheduler.scheduleJob(taskDeatil, trigger);
         if (!scheduler.isShutdown()) {
             scheduler.start();
@@ -97,7 +110,11 @@ public class DynamicSchedule implements IScheduleService {
     public ScheduleTask addTask(String taskName, String taskClassName, String triggerName,
                                 String cron)
                     throws Exception {
-        ScheduleTask task = createTask(taskName, taskClassName, triggerName, cron);
+        Class<?> clazz = Class.forName(taskClassName);
+        Method method = clazz.getMethod(triggerName);
+        ScheduleTask task = createTask(method);
+        task.setName(taskName);
+        task.setCron(cron);
         addTask(task);
         return task;
     }

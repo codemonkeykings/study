@@ -8,9 +8,7 @@
 		<artifactId>study</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.zac</groupId>
 	<artifactId>quartz</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>quartz Maven Webapp</name>
 	<url>http://maven.apache.org</url>

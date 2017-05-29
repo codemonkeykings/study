@@ -15,6 +15,7 @@
     <module>fileupload</module>
     <module>webscoket</module>
     <module>quartz</module>
+    <module>redis</module>
   </modules>
 
 	<properties>

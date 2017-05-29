@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class SpringTxCase {
     
-    ClassPathXmlApplicationContext context = null;
+    protected ClassPathXmlApplicationContext context = null;
 
     /**
      * º”‘ÿspring≈‰÷√.
